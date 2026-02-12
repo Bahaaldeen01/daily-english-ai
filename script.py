@@ -2,7 +2,7 @@ import os
 from google import genai
 from datetime import datetime
 
-# إعداد العميل
+# إعداد العميل باستخدام المكتبة الجديدة
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 date_str = datetime.now().strftime("%Y-%m-%d")
@@ -14,12 +14,13 @@ prompt = f"""
 أريد كود HTML فقط.
 """
 
-# التغيير هنا: استخدام 1.5 بدلاً من 2.0
+# التعديل الجوهري هنا: حذف كلمة "models/" وكتابة اسم الموديل مباشرة
 response = client.models.generate_content(
     model="gemini-1.5-flash", 
     contents=prompt
 )
 
+# التأكد من استخراج النص بشكل صحيح
 html_content = response.text
 
 # 1. حفظ صفحة الدرس المنفردة للأرشفة
@@ -30,7 +31,7 @@ file_path = f"archive/{date_str}.html"
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-# 2. تحديث الفهرس
+# 2. تحديث الفهرس (index.html)
 new_link = f'<li><a href="{file_path}">درس يوم {date_str} - تعلم كلمة جديدة</a></li>'
 
 links = []
@@ -38,8 +39,10 @@ if os.path.exists('index.html'):
     with open('index.html', 'r', encoding='utf-8') as f:
         content = f.read()
         if "<ul>" in content:
-            links_part = content.split("<ul>")[1].split("</ul>")[0]
-            links = [l.strip() for l in links_part.strip().split("\n") if l.strip()]
+            parts = content.split("<ul>")
+            if len(parts) > 1:
+                links_part = parts[1].split("</ul>")[0]
+                links = [l.strip() for l in links_part.strip().split("\n") if l.strip()]
 
 links.insert(0, new_link)
 
