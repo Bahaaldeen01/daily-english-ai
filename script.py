@@ -1,21 +1,19 @@
 import os
 import json
 from datetime import datetime
-import requests
 from gtts import gTTS
 from openai import OpenAI
-from PIL import Image, ImageDraw, ImageFont
-from io import BytesIO
 
-# ─── إعداد OpenRouter ───
+# ═══════════════════════════════════════
+#  CONFIGURATION
+# ═══════════════════════════════════════
 client = OpenAI(
     base_url="https://openrouter.ai/api/v1",
     api_key=os.getenv("OPENROUTER_API_KEY")
 )
 if not client.api_key:
-    raise Exception("OPENROUTER_API_KEY not found in secrets")
+    raise Exception("OPENROUTER_API_KEY not found")
 
-# ─── التاريخ والمجلدات ───
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
 archive_dir = "archive"
 os.makedirs(archive_dir, exist_ok=True)
@@ -27,41 +25,65 @@ if os.path.exists(file_path):
     print("Lesson already exists.")
     exit(0)
 
-# ─── تحميل الكلمات المستخدمة سابقاً ───
+# ═══════════════════════════════════════
+#  LOAD HISTORY
+# ═══════════════════════════════════════
 history_file = f"{archive_dir}/history.json"
-used_words = []
+used_phrases = []
 if os.path.exists(history_file):
     with open(history_file, "r", encoding="utf-8") as f:
-        used_words = json.load(f)
+        used_phrases = json.load(f)
 
-# ─── توليد المحتوى ───
+# ═══════════════════════════════════════
+#  GENERATE CONTENT
+# ═══════════════════════════════════════
 prompt = f"""
 You are a language learning assistant. Generate today's daily English lesson.
 
-Previously used phrases (avoid repeating): {used_words[-50:]}
+Previously used phrases (DO NOT repeat): {used_phrases[-60:]}
 
-Return ONLY a JSON object (no markdown):
+Return ONLY a valid JSON object with NO markdown:
 {{
-  "phrase": "a common English phrase or expression",
+  "phrase": "a common English phrase, idiom, or expression",
   "phrase_ar": "ترجمة بالعربية",
-  "pronunciation": "/phonetic/",
-  "explanation": "شرح مبسط بالعربية",
+  "pronunciation": "/phonetic pronunciation/",
+  "explanation": "شرح مبسط وواضح بالعربية لمعنى الجملة ومتى تُستخدم",
   "usages": [
-    "First usage example",
-    "Second usage example",
-    "Third usage example"
+    "First example sentence using the phrase",
+    "Second example sentence",
+    "Third example sentence"
   ],
   "joke": {{
-    "en": "A joke related to the phrase",
-    "ar": "ترجمة النكتة"
+    "en": "A short funny joke related to the phrase",
+    "ar": "ترجمة النكتة بالعربية"
   }},
-  "grammar_tip": "نصيحة قواعدية بالعربية",
+  "grammar_tip": "نصيحة قواعدية قصيرة بالعربية مرتبطة بالجملة",
   "vocabulary": [
-    {{"word": "word1", "meaning_ar": "معنى", "example": "example sentence"}},
-    {{"word": "word2", "meaning_ar": "معنى", "example": "example sentence"}},
-    {{"word": "word3", "meaning_ar": "معنى", "example": "example sentence"}}
+    {{"word": "word1", "meaning_ar": "المعنى", "example": "Example sentence"}},
+    {{"word": "word2", "meaning_ar": "المعنى", "example": "Example sentence"}},
+    {{"word": "word3", "meaning_ar": "المعنى", "example": "Example sentence"}}
+  ],
+  "quiz": [
+    {{
+      "question": "سؤال اختيار من متعدد بالعربية عن معنى الجملة",
+      "options": ["خيار 1", "خيار 2", "خيار 3"],
+      "correct": 0
+    }},
+    {{
+      "question": "سؤال آخر عن استخدام الجملة أو إحدى المفردات",
+      "options": ["خيار 1", "خيار 2", "خيار 3"],
+      "correct": 1
+    }}
   ]
 }}
+
+Rules:
+- Target beginner to intermediate Arabic-speaking learners
+- The phrase should be useful in daily life
+- Arabic explanations must be clear and simple
+- The joke MUST be related to the phrase
+- Quiz questions in Arabic, options in Arabic
+- Return valid JSON only, no extra text
 """
 
 response = client.chat.completions.create(
@@ -69,216 +91,115 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": prompt}],
     temperature=0.8,
 )
+
 text = response.choices[0].message.content.strip()
 text = text.replace("```json", "").replace("```", "").strip()
 data = json.loads(text)
 
-# ─── تحديث السجل ───
-used_words.append(data["phrase"])
+# ═══════════════════════════════════════
+#  UPDATE HISTORY
+# ═══════════════════════════════════════
+used_phrases.append(data["phrase"])
 with open(history_file, "w", encoding="utf-8") as f:
-    json.dump(used_words, f, ensure_ascii=False)
+    json.dump(used_phrases, f, ensure_ascii=False)
 
-# ─── توليد الصوت ───
-# صوت الجملة الرئيسية
-tts_phrase = gTTS(data["phrase"], lang='en')
-tts_phrase.save(f"{lesson_dir}/phrase.mp3")
+# ═══════════════════════════════════════
+#  GENERATE AUDIO
+# ═══════════════════════════════════════
+tts = gTTS(data["phrase"], lang='en')
+tts.save(f"{lesson_dir}/phrase.mp3")
 
-# صوت كل كلمة
 for i, vocab in enumerate(data["vocabulary"]):
-    tts_word = gTTS(vocab["word"], lang='en')
-    tts_word.save(f"{lesson_dir}/word_{i}.mp3")
+    tts_w = gTTS(vocab["word"], lang='en')
+    tts_w.save(f"{lesson_dir}/word_{i}.mp3")
 
-# ─── بناء HTML ───
-vocab_cards = ""
-for i, vocab in enumerate(data["vocabulary"]):
-    vocab_cards += f"""
+# ═══════════════════════════════════════
+#  BUILD LESSON HTML
+# ═══════════════════════════════════════
+
+# Usages HTML
+usages_html = ""
+for usage in data["usages"]:
+    usages_html += f'<div class="usage-item">{usage}</div>\n'
+
+# Vocabulary cards HTML
+vocab_html = ""
+for i, v in enumerate(data["vocabulary"]):
+    vocab_html += f"""
     <div class="vocab-card">
-        <span class="vocab-word">{vocab['word']}</span>
-        <span class="vocab-meaning">{vocab['meaning_ar']}</span>
-        <p class="vocab-example">"{vocab['example']}"</p>
-        <audio controls src="word_{i}.mp3"></audio>
+      <button class="vocab-sound-btn" data-audio="word_{i}.mp3">🔊</button>
+      <div>
+        <div class="vocab-word-text">{v['word']}</div>
+        <div class="vocab-meaning">{v['meaning_ar']}</div>
+        <div class="vocab-example">"{v['example']}"</div>
+      </div>
     </div>
     """
 
-usages_html = ""
-for usage in data["usages"]:
-    usages_html += f'<div class="usage-item">💬 {usage}</div>\n'
-
-lesson_html = f"""<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daily Phrase – {date_str}</title>
-<style>
-  * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-  body {{
-    font-family: 'Segoe UI', Tahoma, sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    color: #f0f0f0;
-    min-height: 100vh;
-    padding: 20px;
-  }}
-  .container {{ max-width: 700px; margin: 0 auto; }}
-  h1 {{
-    text-align: center;
-    font-size: 1.8em;
-    margin-bottom: 25px;
-    color: #4fc3f7;
-  }}
-  .main-card {{
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 25px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-  }}
-  .phrase {{
-    font-size: 1.8em;
-    color: #4fc3f7;
-    font-weight: bold;
-    text-align: center;
-    direction: ltr;
-  }}
-  .pronunciation {{
-    text-align: center;
-    color: #aaa;
-    font-style: italic;
-    margin: 8px 0;
-    direction: ltr;
-  }}
-  .phrase-ar {{
-    text-align: center;
-    font-size: 1.3em;
-    color: #e0e0e0;
-    margin: 10px 0;
-  }}
-  .section-title {{
-    font-size: 1.2em;
-    color: #4fc3f7;
-    margin: 20px 0 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgba(79,195,247,0.3);
-  }}
-  .explanation {{ line-height: 1.8; font-size: 1.05em; }}
-  .usage-item {{
-    background: rgba(255,255,255,0.05);
-    padding: 10px 15px;
-    border-radius: 8px;
-    margin: 8px 0;
-    direction: ltr;
-    text-align: left;
-  }}
-  .joke-box {{
-    background: rgba(255,193,7,0.1);
-    border-right: 4px solid #ffc107;
-    padding: 15px;
-    border-radius: 8px;
-    margin: 15px 0;
-  }}
-  .joke-en {{ direction: ltr; text-align: left; font-style: italic; }}
-  .joke-ar {{ margin-top: 8px; color: #ccc; }}
-  .grammar-tip {{
-    background: rgba(76,175,80,0.1);
-    border-right: 4px solid #4caf50;
-    padding: 15px;
-    border-radius: 8px;
-  }}
-  .vocab-card {{
-    background: rgba(255,255,255,0.06);
-    padding: 15px;
-    border-radius: 10px;
-    margin: 10px 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-  }}
-  .vocab-word {{
-    font-weight: bold;
-    color: #4fc3f7;
-    font-size: 1.1em;
-    direction: ltr;
-  }}
-  .vocab-meaning {{ color: #ccc; }}
-  .vocab-example {{
-    width: 100%;
-    color: #aaa;
-    font-style: italic;
-    direction: ltr;
-    text-align: left;
-  }}
-  audio {{ height: 30px; }}
-  .nav {{
-    text-align: center;
-    margin-top: 30px;
-  }}
-  .nav a {{
-    color: #4fc3f7;
-    text-decoration: none;
-    padding: 8px 20px;
-    border: 1px solid #4fc3f7;
-    border-radius: 20px;
-    transition: 0.3s;
-  }}
-  .nav a:hover {{
-    background: #4fc3f7;
-    color: #1e1e2f;
-  }}
-</style>
-</head>
-<body>
-<div class="container">
-  <h1>📘 Daily Phrase – {date_str}</h1>
-
-  <div class="main-card">
-    <div class="phrase">{data['phrase']}</div>
-    <div class="pronunciation">{data['pronunciation']}</div>
-    <div class="phrase-ar">{data['phrase_ar']}</div>
-    <div style="text-align:center; margin-top:10px;">
-      <audio controls src="phrase.mp3"></audio>
+# Quiz HTML
+quiz_html = ""
+for qi, q in enumerate(data["quiz"]):
+    opts = ""
+    for oi, opt in enumerate(q["options"]):
+        opts += f'<button class="quiz-option">{opt}</button>\n'
+    quiz_html += f"""
+    <div class="quiz-block" data-correct="{q['correct']}" style="margin-bottom:20px;">
+      <div class="quiz-question">{qi + 1}. {q['question']}</div>
+      <div class="quiz-options">
+        {opts}
+      </div>
+      <div class="quiz-result"></div>
     </div>
-  </div>
+    """
 
-  <div class="main-card">
-    <div class="section-title">📖 الشرح</div>
-    <div class="explanation">{data['explanation']}</div>
-  </div>
+# Load template and replace
+with open("lesson_template.html", "r", encoding="utf-8") as f:
+    template = f.read()
 
-  <div class="main-card">
-    <div class="section-title">💬 أمثلة على الاستخدام</div>
-    {usages_html}
-  </div>
+replacements = {
+    "{{date}}": date_str,
+    "{{phrase}}": data["phrase"],
+    "{{phrase_ar}}": data["phrase_ar"],
+    "{{pronunciation}}": data["pronunciation"],
+    "{{explanation}}": data["explanation"],
+    "{{usages}}": usages_html,
+    "{{vocab_cards}}": vocab_html,
+    "{{joke_en}}": data["joke"]["en"],
+    "{{joke_ar}}": data["joke"]["ar"],
+    "{{grammar_tip}}": data["grammar_tip"],
+    "{{quiz_html}}": quiz_html,
+}
 
-  <div class="main-card">
-    <div class="section-title">📝 مفردات الدرس</div>
-    {vocab_cards}
-  </div>
-
-  <div class="main-card joke-box">
-    <div class="section-title">😄 نكتة اليوم</div>
-    <div class="joke-en">{data['joke']['en']}</div>
-    <div class="joke-ar">{data['joke']['ar']}</div>
-  </div>
-
-  <div class="main-card grammar-tip">
-    <div class="section-title">💡 نصيحة قواعدية</div>
-    <p>{data['grammar_tip']}</p>
-  </div>
-
-  <div class="nav">
-    <a href="../../index.html">📚 العودة للأرشيف</a>
-  </div>
-</div>
-</body>
-</html>"""
+lesson_html = template
+for key, value in replacements.items():
+    lesson_html = lesson_html.replace(key, value)
 
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(lesson_html)
 print(f"Lesson created: {file_path}")
 
-# ─── تحديث index.html ───
+# ═══════════════════════════════════════
+#  UPDATE SEARCH INDEX
+# ═══════════════════════════════════════
+search_index_file = f"{archive_dir}/lessons-data.json"
+search_data = []
+if os.path.exists(search_index_file):
+    with open(search_index_file, "r", encoding="utf-8") as f:
+        search_data = json.load(f)
+
+search_data.append({
+    "date": date_str,
+    "phrase": data["phrase"],
+    "phrase_ar": data["phrase_ar"],
+    "vocabulary": [v["word"] for v in data["vocabulary"]]
+})
+
+with open(search_index_file, "w", encoding="utf-8") as f:
+    json.dump(search_data, f, ensure_ascii=False, indent=2)
+
+# ═══════════════════════════════════════
+#  UPDATE INDEX.HTML
+# ═══════════════════════════════════════
 lesson_dirs = sorted(
     [d for d in os.listdir(archive_dir)
      if os.path.isdir(f"{archive_dir}/{d}") and d[0].isdigit()],
@@ -286,11 +207,32 @@ lesson_dirs = sorted(
 )
 
 links = ""
-for d in lesson_dirs[:60]:
-    links += f'<li><a href="archive/{d}/index.html">📘 {d}</a></li>\n'
+for d in lesson_dirs[:90]:
+    # Load phrase for preview
+    preview = ""
+    lesson_data_path = f"{archive_dir}/lessons-data.json"
+    if os.path.exists(lesson_data_path):
+        with open(lesson_data_path, "r", encoding="utf-8") as f:
+            all_data = json.load(f)
+            match = [x for x in all_data if x["date"] == d]
+            if match:
+                preview = match[0]["phrase"]
 
-with open("index_template.html", encoding="utf-8") as f:
+    links += f"""
+    <li class="lesson-item" data-date="{d}">
+      <a href="archive/{d}/index.html">
+        <div>
+          <div class="lesson-date">{d}</div>
+          <div class="lesson-preview">{preview}</div>
+        </div>
+        <span class="check-icon">✅</span>
+      </a>
+    </li>
+    """
+
+with open("index_template.html", "r", encoding="utf-8") as f:
     index_template = f.read()
+
 index_html = index_template.replace("{{links}}", links)
 with open("index.html", "w", encoding="utf-8") as f:
     f.write(index_html)
