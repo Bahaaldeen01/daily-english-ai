@@ -1,16 +1,14 @@
 import os
 import json
 from datetime import datetime
-import google.generativeai as genai
+from google import genai
 
-# إعداد API
-genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel("gemini-1.5-flash")
+# إعداد العميل
+client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
-# تاريخ اليوم
+# التاريخ
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
 
-# اسم الملف
 file_path = f"archive/{date_str}.html"
 
 # منع التكرار
@@ -28,16 +26,20 @@ Return ONLY JSON array:
 ]
 
 Rules:
-- Arabic meaning
+- meaning in Arabic
 - short example
 - no markdown
 """
 
 try:
-    response = model.generate_content(prompt)
+    response = client.models.generate_content(
+        model="gemini-2.0-flash",
+        contents=prompt
+    )
+
     text = response.text.strip()
 
-    # تنظيف النص
+    # تنظيف
     text = text.replace("```json", "").replace("```", "").strip()
 
     data = json.loads(text)
@@ -45,7 +47,7 @@ try:
     if not isinstance(data, list) or len(data) == 0:
         raise Exception("Invalid AI response")
 
-    # إنشاء كروت الكلمات
+    # إنشاء الكروت
     cards = ""
     for item in data:
         cards += f"""
@@ -62,7 +64,6 @@ try:
 
     final_html = template.replace("{{date}}", date_str).replace("{{content}}", cards)
 
-    # إنشاء مجلد archive
     os.makedirs("archive", exist_ok=True)
 
     with open(file_path, "w", encoding="utf-8") as f:
@@ -70,7 +71,7 @@ try:
 
     print("Lesson page created.")
 
-    # ----- تحديث index -----
+    # تحديث index
     links = []
     for name in sorted(os.listdir("archive"), reverse=True)[:30]:
         links.append(f'<li><a href="archive/{name}">{name}</a></li>')
