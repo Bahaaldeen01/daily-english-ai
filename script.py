@@ -1,10 +1,13 @@
 import os
 import json
 from datetime import datetime
-from google import genai
+from openai import OpenAI
 
-# إعداد العميل
-client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
+# الاتصال بـ OpenRouter
+client = OpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    api_key=os.environ["OPENROUTER_API_KEY"],
+)
 
 # التاريخ
 date_str = datetime.utcnow().strftime("%Y-%m-%d")
@@ -16,7 +19,6 @@ if os.path.exists(file_path):
     print("Lesson already exists.")
     exit(0)
 
-# البرومبت
 prompt = """
 Create 5 English words for beginners.
 
@@ -32,12 +34,15 @@ Rules:
 """
 
 try:
-    response = client.models.generate_content(
-        model="gemini-2.0-flash",
-        contents=prompt
+    completion = client.chat.completions.create(
+        model="openai/gpt-4o-mini",
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
+        temperature=0.7,
     )
 
-    text = response.text.strip()
+    text = completion.choices[0].message.content.strip()
 
     # تنظيف
     text = text.replace("```json", "").replace("```", "").strip()
