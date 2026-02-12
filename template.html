@@ -1,39 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
 <meta charset="UTF-8">
-<title>Lesson {{date}}</title>
-
+<title>Lesson – {{date}}</title>
 <style>
-body{
-    font-family: Arial, sans-serif;
-    background:#0f172a;
-    color:white;
-    padding:20px;
-}
-.card{
-    background:#1e293b;
-    padding:15px;
-    margin-bottom:15px;
-    border-radius:10px;
-}
-.word{
-    font-size:22px;
-    font-weight:bold;
-    color:#38bdf8;
-}
-.meaning{margin-top:5px}
-.example{margin-top:5px;color:#cbd5e1}
+body { font-family: Arial; background: #1e1e2f; color: #f0f0f0; padding: 20px; }
+.card { background: #2a2a40; margin: 10px 0; padding: 15px; border-radius: 8px; }
+.word { font-size: 1.5em; font-weight: bold; color: #4fc3f7; }
+.meaning, .example { margin-top: 5px; }
+img.word-image { max-width: 150px; display:block; margin-top:10px; border-radius:5px; }
+audio { margin-top:5px; }
 </style>
-
 </head>
 <body>
-
 <h1>📘 Lesson – {{date}}</h1>
-
 {{content}}
-
-<p><a href="../index.html" style="color:#38bdf8">⬅ Back</a></p>
-
 </body>
 </html>
