@@ -2,12 +2,11 @@ import os
 from google import genai
 from datetime import datetime
 
-# إعداد العميل باستخدام المكتبة الجديدة
+# إعداد العميل
 client = genai.Client(api_key=os.environ["GEMINI_API_KEY"])
 
 date_str = datetime.now().strftime("%Y-%m-%d")
 
-# الطلب المحدث
 prompt = f"""
 أنت خبير سيو ومدرس لغة إنجليزية. صمم صفحة HTML كاملة لدرس تاريخ {date_str}.
 اختر كلمة إنجليزية مفيدة، وقدم: (العنوان، وصف Meta، المعنى، النطق، 3 أمثلة، ونكتة).
@@ -15,9 +14,9 @@ prompt = f"""
 أريد كود HTML فقط.
 """
 
-# تشغيل الموديل (تأكد من استخدام الاسم الصحيح للموديل)
+# التغيير هنا: استخدام 1.5 بدلاً من 2.0
 response = client.models.generate_content(
-    model="gemini-2.0-flash", # نستخدم أحدث إصدار متاح حالياً
+    model="gemini-1.5-flash", 
     contents=prompt
 )
 
@@ -31,22 +30,19 @@ file_path = f"archive/{date_str}.html"
 with open(file_path, "w", encoding="utf-8") as f:
     f.write(html_content)
 
-# 2. تحديث الفهرس في الصفحة الرئيسية (index.html)
+# 2. تحديث الفهرس
 new_link = f'<li><a href="{file_path}">درس يوم {date_str} - تعلم كلمة جديدة</a></li>'
 
-# قراءة الروابط الحالية إذا وجدت
 links = []
 if os.path.exists('index.html'):
     with open('index.html', 'r', encoding='utf-8') as f:
         content = f.read()
-        if "<ul>" in content and "</ul>" in content:
+        if "<ul>" in content:
             links_part = content.split("<ul>")[1].split("</ul>")[0]
             links = [l.strip() for l in links_part.strip().split("\n") if l.strip()]
 
-# إضافة الرابط الجديد في البداية
 links.insert(0, new_link)
 
-# بناء صفحة الـ Index بتصميم بسيط
 index_html = f"""
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
