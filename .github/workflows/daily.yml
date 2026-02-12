@@ -1,27 +1,35 @@
 name: Daily AI Post
+
 on:
   schedule:
     - cron: '0 8 * * *'
   workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
-      - run: pip install google-generativeai # العودة للمكتبة المستقرة
-      - env:
+
+      - run: pip install -r requirements.txt
+
+      - name: Generate Lesson
+        env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python script.py
+
       - name: Push
         run: |
           git config --global user.name "AI-Bot"
           git config --global user.email "bot@ai.com"
           git add .
-          git commit -m "New Lesson" || exit 0
+          git commit -m "Lesson $(date +'%Y-%m-%d')" || exit 0
           git push
