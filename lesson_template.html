@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{phrase}} – {{phrase_ar}} | تعلم الإنجليزية يومياً">
+  <meta property="og:title" content="Daily Phrase – {{phrase}}">
+  <meta property="og:description" content="{{phrase_ar}}">
+  <meta name="theme-color" content="#0a0a1a">
+  <link rel="manifest" href="../../manifest.json">
+  <title>{{phrase}} – Daily Phrase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/style.css">
+</head>
+<body>
+<div class="container">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../../index.html" class="navbar-brand">
+      <span class="logo-icon">📘</span>
+      <span>Daily Phrase</span>
+    </a>
+    <div class="navbar-actions">
+      <button class="theme-toggle" id="themeToggle">🌙 داكن</button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div class="lesson-hero fade-in" id="lessonDate" data-date="{{date}}">
+    <div class="lesson-date-badge">📅 {{date}}</div>
+    <div class="lesson-phrase">{{phrase}}</div>
+    <div class="lesson-pronunciation">{{pronunciation}}</div>
+    <div class="lesson-phrase-ar">{{phrase_ar}}</div>
+    <button class="sound-btn" data-audio="phrase.mp3">
+      🔊 استمع للنطق
+    </button>
+  </div>
+
+  <!-- Explanation -->
+  <div class="section-card fade-in">
+    <div class="section-title">📖 الشرح</div>
+    <div class="section-body">{{explanation}}</div>
+  </div>
+
+  <!-- Usage Examples -->
+  <div class="section-card fade-in">
+    <div class="section-title">💬 أمثلة على الاستخدام</div>
+    <div class="section-body">
+      {{usages}}
+    </div>
+  </div>
+
+  <!-- Ad Slot #1 -->
+  <div class="ad-container fade-in">
+    <div>
+      <div class="ad-label">إعلان</div>
+      <!-- ADSENSE_LESSON_SLOT_1 -->
+    </div>
+  </div>
+
+  <!-- Vocabulary -->
+  <div class="section-card fade-in">
+    <div class="section-title">📝 مفردات الدرس</div>
+    <div class="vocab-grid">
+      {{vocab_cards}}
+    </div>
+  </div>
+
+  <!-- Joke -->
+  <div class="section-card joke-card fade-in">
+    <div class="section-title">😄 نكتة اليوم</div>
+    <div class="joke-en">{{joke_en}}</div>
+    <div class="joke-ar">{{joke_ar}}</div>
+  </div>
+
+  <!-- Grammar Tip -->
+  <div class="section-card grammar-card fade-in">
+    <div class="section-title">💡 نصيحة قواعدية</div>
+    <div class="section-body">{{grammar_tip}}</div>
+  </div>
+
+  <!-- Quiz -->
+  <div class="section-card quiz-card fade-in">
+    <div class="section-title">🧠 اختبر نفسك</div>
+    {{quiz_html}}
+    <div class="quiz-score" id="quizScore"></div>
+  </div>
+
+  <!-- Ad Slot #2 -->
+  <div class="ad-container fade-in">
+    <div>
+      <div class="ad-label">إعلان</div>
+      <!-- ADSENSE_LESSON_SLOT_2 -->
+    </div>
+  </div>
+
+  <!-- Share -->
+  <div class="share-section fade-in">
+    <a class="share-btn whatsapp" id="shareWhatsapp" href="#" target="_blank">💬 واتساب</a>
+    <a class="share-btn twitter" id="shareTwitter" href="#" target="_blank">🐦 تويتر</a>
+    <a class="share-btn telegram" id="shareTelegram" href="#" target="_blank">✈️ تيليجرام</a>
+    <a class="share-btn copy-link" id="shareCopy" href="#">🔗 نسخ الرابط</a>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav-back fade-in">
+    <a href="../../index.html">📚 العودة للأرشيف</a>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>Daily Phrase – تعلم الإنجليزية يومياً بالذكاء الاصطناعي 🤖</p>
+  </footer>
+
+</div>
+
+<div class="install-banner" id="installBanner">📲 ثبّت التطبيق على جهازك</div>
+
+<script src="../../assets/app.js"></script>
+</body>
+</html>
