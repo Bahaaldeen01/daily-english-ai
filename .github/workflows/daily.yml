@@ -19,17 +19,18 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install -r requirements.txt
+      - name: Install dependencies
+        run: pip install -r requirements.txt
 
       - name: Generate Lesson
         env:
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
         run: python script.py
 
-      - name: Push
+      - name: Commit and Push
         run: |
-          git config --global user.name "AI-Bot"
-          git config --global user.email "bot@ai.com"
+          git config --global user.name "Daily-Phrase-Bot"
+          git config --global user.email "bot@dailyphrase.ai"
           git add .
           git commit -m "📘 Lesson $(date +'%Y-%m-%d')" || exit 0
           git push
