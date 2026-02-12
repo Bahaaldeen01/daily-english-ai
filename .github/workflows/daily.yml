@@ -1,0 +1,24 @@
+name: Daily AI Post
+on:
+  schedule:
+    - cron: '0 8 * * *' # ينشر كل يوم الساعة 8 صباحاً
+  workflow_dispatch: # زر يسمح لك بالنشر يدوياً للتجربة
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with: { python-version: '3.9' }
+      - run: pip install google-generativeai
+      - env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python script.py
+      - name: Save Changes
+        run: |
+          git config --global user.name "AI-Bot"
+          git config --global user.email "bot@ai.com"
+          git add .
+          git commit -m "New Lesson Added" || exit 0
+          git push
