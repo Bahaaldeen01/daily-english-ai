@@ -1,4 +1,7 @@
 import os
+print("ENV KEYS:", list(os.environ.keys()))
+
+import os
 import json
 from datetime import datetime
 from openai import OpenAI
