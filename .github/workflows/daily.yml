@@ -12,12 +12,12 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-             python-version: '3.11'
+          python-version: '3.11'
 
       - run: pip install -r requirements.txt
 
@@ -31,5 +31,5 @@ jobs:
           git config --global user.name "AI-Bot"
           git config --global user.email "bot@ai.com"
           git add .
-          git commit -m "Lesson $(date +'%Y-%m-%d')" || exit 0
+          git commit -m "📘 Lesson $(date +'%Y-%m-%d')" || exit 0
           git push
