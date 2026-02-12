@@ -1,75 +1,90 @@
 import os
-import google.generativeai as genai
+import json
 from datetime import datetime
+import google.generativeai as genai
 
-# 1. إعداد الاتصال
+# إعداد API
 genai.configure(api_key=os.environ["GEMINI_API_KEY"])
-model = genai.GenerativeModel('gemini-1.5-flash')
+model = genai.GenerativeModel("gemini-1.5-flash")
 
-date_str = datetime.now().strftime("%Y-%m-%d")
+# تاريخ اليوم
+date_str = datetime.utcnow().strftime("%Y-%m-%d")
 
-# 2. البرومبت (طلب الكود بوضوح)
-prompt = f"Write a complete HTML page for an English lesson about a new word for {date_str}. Include the word, meaning, and an example sentence. Use simple internal CSS for a nice look. Return ONLY the HTML code."
+# اسم الملف
+file_path = f"archive/{date_str}.html"
+
+# منع التكرار
+if os.path.exists(file_path):
+    print("Lesson already exists.")
+    exit(0)
+
+# البرومبت
+prompt = """
+Create 5 English words for beginners.
+
+Return ONLY JSON array:
+[
+{"word":"","meaning":"","example":"","pronunciation":""}
+]
+
+Rules:
+- Arabic meaning
+- short example
+- no markdown
+"""
 
 try:
-    # 3. طلب المحتوى وتنظيفه
     response = model.generate_content(prompt)
-    raw_html = response.text.strip()
-    
-    # تنظيف الكود من علامات markdown إذا وجدت
-    clean_html = raw_html.replace('```html', '').replace('```', '').strip()
+    text = response.text.strip()
 
-    # تأمين المجلد
-    if not os.path.exists('archive'):
-        os.makedirs('archive')
+    # تنظيف النص
+    text = text.replace("```json", "").replace("```", "").strip()
 
-    # 4. حفظ ملف الدرس
-    file_path = f"archive/{date_str}.html"
-    with open(file_path, "w", encoding="utf-8") as f:
-        f.write(clean_html)
+    data = json.loads(text)
 
-    # 5. تحديث الصفحة الرئيسية (بناء كامل وجديد لضمان عدم الفراغ)
-    # سنقوم بجلب الملفات الموجودة في الأرشيف لإنشاء القائمة
-    archive_files = os.listdir('archive')
-    archive_files.sort(reverse=True) # الأحدث أولاً
-    
-    links_html = ""
-    for file in archive_files:
-        links_html += f'<li><a href="archive/{file}">درس يوم {file.replace(".html", "")}</a></li>\n'
+    if not isinstance(data, list) or len(data) == 0:
+        raise Exception("Invalid AI response")
 
-    index_content = f"""
-    <!DOCTYPE html>
-    <html lang="ar" dir="rtl">
-    <head>
-        <meta charset="UTF-8">
-        <title>تعلم الإنجليزية يومياً</title>
-        <style>
-            body {{ font-family: Arial; background: #f4f4f9; padding: 20px; text-align: center; }}
-            .container {{ background: white; max-width: 600px; margin: auto; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }}
-            h1 {{ color: #2c3e50; }}
-            ul {{ list-style: none; padding: 0; }}
-            li {{ margin: 10px 0; padding: 10px; border-bottom: 1px solid #eee; }}
-            a {{ text-decoration: none; color: #3498db; font-weight: bold; }}
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <h1>أرشيف الدروس الذكي</h1>
-            <ul>
-                {links_html}
-            </ul>
+    # إنشاء كروت الكلمات
+    cards = ""
+    for item in data:
+        cards += f"""
+        <div class="card">
+            <div class="word">{item['word']} – 🔊 {item['pronunciation']}</div>
+            <div class="meaning">Meaning: {item['meaning']}</div>
+            <div class="example">Example: {item['example']}</div>
         </div>
-    </body>
-    </html>
-    """
+        """
+
+    # قراءة القالب
+    with open("template.html", encoding="utf-8") as f:
+        template = f.read()
+
+    final_html = template.replace("{{date}}", date_str).replace("{{content}}", cards)
+
+    # إنشاء مجلد archive
+    os.makedirs("archive", exist_ok=True)
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(final_html)
+
+    print("Lesson page created.")
+
+    # ----- تحديث index -----
+    links = []
+    for name in sorted(os.listdir("archive"), reverse=True)[:30]:
+        links.append(f'<li><a href="archive/{name}">{name}</a></li>')
+
+    with open("index_template.html", encoding="utf-8") as f:
+        index_template = f.read()
+
+    index_html = index_template.replace("{{links}}", "\n".join(links))
 
     with open("index.html", "w", encoding="utf-8") as f:
-        f.write(index_content)
-        
-    print(f"Done! Created {file_path} and updated index.html")
+        f.write(index_html)
+
+    print("Index updated.")
 
 except Exception as e:
-    print(f"Error: {e}")
-    # في حالة الخطأ، لا تترك الملف فارغاً
-    with open("index.html", "w", encoding="utf-8") as f:
-        f.write("<h1>تحت الصيانة - يرجى العودة لاحقاً</h1>")
+    print("ERROR:", e)
+    exit(1)
