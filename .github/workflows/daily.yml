@@ -1,40 +1,27 @@
 name: Daily AI Post
-
 on:
   schedule:
-    - cron: '0 8 * * *' # ينشر تلقائياً كل يوم الساعة 8 صباحاً
-  workflow_dispatch: # يتيح لك التشغيل اليدوي لتجربة الموقع الآن
-
+    - cron: '0 8 * * *'
+  workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
-    # تأكد من منح الروبوت صلاحية الكتابة لتحديث الموقع
     permissions:
       contents: write
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11' # الترقية التي طلبها جوجل
-
-      - name: Install dependencies
-        run: |
-          pip install google-genai # المكتبة الجديدة والموصى بها
-
-      - name: Run Script
-        env:
+          python-version: '3.10'
+      - run: pip install google-generativeai # العودة للمكتبة المستقرة
+      - env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: python script.py # تشغيل ملف البايثون
-
-      - name: Commit and Push changes
+        run: python script.py
+      - name: Push
         run: |
           git config --global user.name "AI-Bot"
           git config --global user.email "bot@ai.com"
           git add .
-          git commit -m "Add new daily lesson: $(date +'%Y-%m-%d')" || exit 0
+          git commit -m "New Lesson" || exit 0
           git push
