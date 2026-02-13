@@ -8,5 +8,15 @@
       "cake",
       "easy"
     ]
+  },
+  {
+    "date": "2026-02-13",
+    "phrase": "under the weather",
+    "phrase_ar": "تحت الطقس",
+    "vocabulary": [
+      "weather",
+      "feel",
+      "sick"
+    ]
   }
 ]
