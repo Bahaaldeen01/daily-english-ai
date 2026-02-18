@@ -58,5 +58,15 @@
       "beans",
       "surprise"
     ]
+  },
+  {
+    "date": "2026-02-18",
+    "phrase": "call it a day",
+    "phrase_ar": "انتهى اليوم",
+    "vocabulary": [
+      "employee",
+      "ladder",
+      "meeting"
+    ]
   }
 ]
