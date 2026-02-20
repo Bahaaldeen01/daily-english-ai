@@ -78,5 +78,15 @@
       "arm",
       "leg"
     ]
+  },
+  {
+    "date": "2026-02-20",
+    "phrase": "barking up the wrong tree",
+    "phrase_ar": "توجيه اللوم إلى الشخص الخطأ",
+    "vocabulary": [
+      "blame",
+      "fault",
+      "project"
+    ]
   }
 ]
