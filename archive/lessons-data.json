@@ -88,5 +88,15 @@
       "fault",
       "project"
     ]
+  },
+  {
+    "date": "2026-02-21",
+    "phrase": "burn the midnight oil",
+    "phrase_ar": "يسهر حتى وقت متأخر",
+    "vocabulary": [
+      "midnight",
+      "oil",
+      "burn"
+    ]
   }
 ]
