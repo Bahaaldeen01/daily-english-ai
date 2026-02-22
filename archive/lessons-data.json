@@ -98,5 +98,15 @@
       "oil",
       "burn"
     ]
+  },
+  {
+    "date": "2026-02-22",
+    "phrase": "let the cat out of the bag",
+    "phrase_ar": "كشفت السر",
+    "vocabulary": [
+      "cat",
+      "bag",
+      "let"
+    ]
   }
 ]
