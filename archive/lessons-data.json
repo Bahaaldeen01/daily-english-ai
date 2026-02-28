@@ -158,5 +158,15 @@
       "dog",
       "lie"
     ]
+  },
+  {
+    "date": "2026-02-28",
+    "phrase": "pull someone's leg",
+    "phrase_ar": "يجرّ رجل شخص ما",
+    "vocabulary": [
+      "pull",
+      "leg",
+      "joke"
+    ]
   }
 ]
