@@ -218,5 +218,15 @@
       "horses",
       "patience"
     ]
+  },
+  {
+    "date": "2026-03-06",
+    "phrase": "hit the road",
+    "phrase_ar": "انطلق",
+    "vocabulary": [
+      "journey",
+      "traffic",
+      "destination"
+    ]
   }
 ]
