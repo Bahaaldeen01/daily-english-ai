@@ -228,5 +228,15 @@
       "traffic",
       "destination"
     ]
+  },
+  {
+    "date": "2026-03-07",
+    "phrase": "cut to the chase",
+    "phrase_ar": "اذهب إلى لب الموضوع",
+    "vocabulary": [
+      "chase",
+      "cut",
+      "topic"
+    ]
   }
 ]
