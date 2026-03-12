@@ -278,5 +278,15 @@
       "project",
       "job"
     ]
+  },
+  {
+    "date": "2026-03-12",
+    "phrase": "under the weather",
+    "phrase_ar": "شعور بالتعب أو المرض",
+    "vocabulary": [
+      "sick",
+      "doctor",
+      "rest"
+    ]
   }
 ]
