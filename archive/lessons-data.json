@@ -288,5 +288,15 @@
       "doctor",
       "rest"
     ]
+  },
+  {
+    "date": "2026-03-13",
+    "phrase": "let bygones be bygones",
+    "phrase_ar": "دع الأمور الماضية تكون من الماضي",
+    "vocabulary": [
+      "bygones",
+      "focus",
+      "argue"
+    ]
   }
 ]
