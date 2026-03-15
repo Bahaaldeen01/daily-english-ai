@@ -308,5 +308,15 @@
       "disguise",
       "unexpected"
     ]
+  },
+  {
+    "date": "2026-03-15",
+    "phrase": "the early bird catches the worm",
+    "phrase_ar": "الذي يستيقظ مبكرًا يحصل على الدودة",
+    "vocabulary": [
+      "early",
+      "bird",
+      "catch"
+    ]
   }
 ]
