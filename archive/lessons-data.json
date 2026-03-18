@@ -338,5 +338,15 @@
       "appointment",
       "accept"
     ]
+  },
+  {
+    "date": "2026-03-18",
+    "phrase": "read between the lines",
+    "phrase_ar": "اقرأ ما بين السطور",
+    "vocabulary": [
+      "understand",
+      "meaning",
+      "message"
+    ]
   }
 ]
