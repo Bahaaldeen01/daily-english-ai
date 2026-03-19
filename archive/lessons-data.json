@@ -348,5 +348,15 @@
       "meaning",
       "message"
     ]
+  },
+  {
+    "date": "2026-03-19",
+    "phrase": "the elephant in the room",
+    "phrase_ar": "الفيل في الغرفة",
+    "vocabulary": [
+      "elephant",
+      "room",
+      "address"
+    ]
   }
 ]
