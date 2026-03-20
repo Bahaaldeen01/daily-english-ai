@@ -358,5 +358,15 @@
       "room",
       "address"
     ]
+  },
+  {
+    "date": "2026-03-20",
+    "phrase": "jump through hoops",
+    "phrase_ar": "القفز عبر الأطواق",
+    "vocabulary": [
+      "hoop",
+      "effort",
+      "obstacle"
+    ]
   }
 ]
