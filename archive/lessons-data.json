@@ -388,5 +388,15 @@
       "cinema",
       "soda"
     ]
+  },
+  {
+    "date": "2026-03-23",
+    "phrase": "go the extra mile",
+    "phrase_ar": "بذل جهد إضافي",
+    "vocabulary": [
+      "effort",
+      "success",
+      "help"
+    ]
   }
 ]
