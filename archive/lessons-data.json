@@ -428,5 +428,15 @@
       "bucket",
       "field"
     ]
+  },
+  {
+    "date": "2026-03-27",
+    "phrase": "the best of both worlds",
+    "phrase_ar": "أفضل ما في العالمين",
+    "vocabulary": [
+      "productive",
+      "benefit",
+      "advantage"
+    ]
   }
 ]
