@@ -478,5 +478,15 @@
       "problem",
       "address"
     ]
+  },
+  {
+    "date": "2026-04-01",
+    "phrase": "breathe easy",
+    "phrase_ar": "تنفس بسهولة",
+    "vocabulary": [
+      "worry",
+      "relief",
+      "calm"
+    ]
   }
 ]
