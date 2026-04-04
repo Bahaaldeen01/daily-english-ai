@@ -498,5 +498,15 @@
       "address",
       "conversation"
     ]
+  },
+  {
+    "date": "2026-04-04",
+    "phrase": "a blessing in disguise",
+    "phrase_ar": "نعمة في ثوب نقمة",
+    "vocabulary": [
+      "blessing",
+      "disguise",
+      "unexpected"
+    ]
   }
 ]
