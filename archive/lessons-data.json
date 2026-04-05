@@ -508,5 +508,15 @@
       "disguise",
       "unexpected"
     ]
+  },
+  {
+    "date": "2026-04-05",
+    "phrase": "the straw that broke the camel's back",
+    "phrase_ar": "القشة التي قصمت ظهر البعير",
+    "vocabulary": [
+      "straw",
+      "camel",
+      "back"
+    ]
   }
 ]
