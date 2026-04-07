@@ -528,5 +528,15 @@
       "project",
       "test"
     ]
+  },
+  {
+    "date": "2026-04-07",
+    "phrase": "under the weather",
+    "phrase_ar": "شعور بالمرض",
+    "vocabulary": [
+      "weather",
+      "feel",
+      "sick"
+    ]
   }
 ]
