@@ -578,5 +578,15 @@
       "project",
       "deadline"
     ]
+  },
+  {
+    "date": "2026-04-12",
+    "phrase": "beat around the bush",
+    "phrase_ar": "يدور حول الموضوع",
+    "vocabulary": [
+      "bush",
+      "beat",
+      "direct"
+    ]
   }
 ]
