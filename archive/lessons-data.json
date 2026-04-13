@@ -588,5 +588,15 @@
       "beat",
       "direct"
     ]
+  },
+  {
+    "date": "2026-04-13",
+    "phrase": "the sky's the limit",
+    "phrase_ar": "السماء هي الحدود",
+    "vocabulary": [
+      "limit",
+      "sky",
+      "achieve"
+    ]
   }
 ]
