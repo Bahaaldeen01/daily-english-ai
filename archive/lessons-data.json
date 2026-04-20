@@ -658,5 +658,15 @@
       "ready",
       "journey"
     ]
+  },
+  {
+    "date": "2026-04-20",
+    "phrase": "spill the beans",
+    "phrase_ar": "كشف الأسرار",
+    "vocabulary": [
+      "spill",
+      "beans",
+      "secret"
+    ]
   }
 ]
