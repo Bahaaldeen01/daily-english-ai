@@ -668,5 +668,15 @@
       "beans",
       "secret"
     ]
+  },
+  {
+    "date": "2026-04-21",
+    "phrase": "face the music",
+    "phrase_ar": "مواجهة العواقب",
+    "vocabulary": [
+      "music",
+      "face",
+      "consequence"
+    ]
   }
 ]
