@@ -708,5 +708,15 @@
       "tea",
       "secret"
     ]
+  },
+  {
+    "date": "2026-04-25",
+    "phrase": "burn the midnight oil",
+    "phrase_ar": "يسهر الليالي",
+    "vocabulary": [
+      "midnight",
+      "oil",
+      "burn"
+    ]
   }
 ]
