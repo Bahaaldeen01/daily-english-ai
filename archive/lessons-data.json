@@ -748,5 +748,15 @@
       "tired",
       "early"
     ]
+  },
+  {
+    "date": "2026-04-29",
+    "phrase": "let the cat out of the bag",
+    "phrase_ar": "كشف السر",
+    "vocabulary": [
+      "cat",
+      "bag",
+      "surprise"
+    ]
   }
 ]
