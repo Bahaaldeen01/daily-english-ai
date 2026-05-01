@@ -768,5 +768,15 @@
       "exam",
       "presentation"
     ]
+  },
+  {
+    "date": "2026-05-01",
+    "phrase": "let sleeping dogs lie",
+    "phrase_ar": "دع الكلاب النائمة ترقد",
+    "vocabulary": [
+      "sleeping",
+      "dog",
+      "lie"
+    ]
   }
 ]
