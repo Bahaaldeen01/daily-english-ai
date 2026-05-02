@@ -778,5 +778,15 @@
       "dog",
       "lie"
     ]
+  },
+  {
+    "date": "2026-05-02",
+    "phrase": "let the cat out of the bag",
+    "phrase_ar": "كشفت السر",
+    "vocabulary": [
+      "cat",
+      "bag",
+      "let"
+    ]
   }
 ]
