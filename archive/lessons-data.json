@@ -838,5 +838,15 @@
       "settle",
       "wait"
     ]
+  },
+  {
+    "date": "2026-05-08",
+    "phrase": "cost an arm and a leg",
+    "phrase_ar": "يكلف ذراعًا وساقًا",
+    "vocabulary": [
+      "cost",
+      "arm",
+      "leg"
+    ]
   }
 ]
