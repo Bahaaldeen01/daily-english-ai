@@ -868,5 +868,15 @@
       "day",
       "time"
     ]
+  },
+  {
+    "date": "2026-05-11",
+    "phrase": "let off steam",
+    "phrase_ar": "يفرغ طاقته",
+    "vocabulary": [
+      "steam",
+      "pressure",
+      "run"
+    ]
   }
 ]
