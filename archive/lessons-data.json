@@ -918,5 +918,15 @@
       "head",
       "hit"
     ]
+  },
+  {
+    "date": "2026-05-16",
+    "phrase": "let the grass grow under your feet",
+    "phrase_ar": "دع العشب ينمو تحت قدميك",
+    "vocabulary": [
+      "grow",
+      "feet",
+      "let"
+    ]
   }
 ]
