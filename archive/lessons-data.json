@@ -928,5 +928,15 @@
       "feet",
       "let"
     ]
+  },
+  {
+    "date": "2026-05-17",
+    "phrase": "hit the hay",
+    "phrase_ar": "اذهب إلى السرير",
+    "vocabulary": [
+      "tired",
+      "early",
+      "long"
+    ]
   }
 ]
