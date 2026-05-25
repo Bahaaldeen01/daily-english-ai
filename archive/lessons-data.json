@@ -1008,5 +1008,15 @@
       "expectation",
       "performance"
     ]
+  },
+  {
+    "date": "2026-05-25",
+    "phrase": "beat the clock",
+    "phrase_ar": "أهزم الساعة",
+    "vocabulary": [
+      "deadline",
+      "project",
+      "exam"
+    ]
   }
 ]
