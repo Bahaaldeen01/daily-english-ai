@@ -1068,5 +1068,15 @@
       "details",
       "prepare"
     ]
+  },
+  {
+    "date": "2026-06-01",
+    "phrase": "the ball is in your court",
+    "phrase_ar": "الكرة في ملعبك",
+    "vocabulary": [
+      "responsibility",
+      "decision",
+      "next move"
+    ]
   }
 ]
