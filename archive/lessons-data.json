@@ -1158,5 +1158,15 @@
       "submit",
       "announcement"
     ]
+  },
+  {
+    "date": "2026-06-10",
+    "phrase": "cut corners",
+    "phrase_ar": "تجاوز الزوايا",
+    "vocabulary": [
+      "project",
+      "quality",
+      "problems"
+    ]
   }
 ]
