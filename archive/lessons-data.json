@@ -1178,5 +1178,15 @@
       "news",
       "propose"
     ]
+  },
+  {
+    "date": "2026-06-12",
+    "phrase": "under the weather",
+    "phrase_ar": "تشعر بالمرض",
+    "vocabulary": [
+      "sick",
+      "home",
+      "party"
+    ]
   }
 ]
