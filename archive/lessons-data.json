@@ -1188,5 +1188,15 @@
       "home",
       "party"
     ]
+  },
+  {
+    "date": "2026-06-13",
+    "phrase": "under the weather",
+    "phrase_ar": "تحت الطقس",
+    "vocabulary": [
+      "weather",
+      "feeling",
+      "sick"
+    ]
   }
 ]
