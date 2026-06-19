@@ -1248,5 +1248,15 @@
       "team",
       "discuss"
     ]
+  },
+  {
+    "date": "2026-06-19",
+    "phrase": "the ball is in your court",
+    "phrase_ar": "الكرة في ملعبك",
+    "vocabulary": [
+      "court",
+      "ball",
+      "decision"
+    ]
   }
 ]
