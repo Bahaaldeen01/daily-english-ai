@@ -1298,5 +1298,15 @@
       "event",
       "suddenly"
     ]
+  },
+  {
+    "date": "2026-06-24",
+    "phrase": "throw caution to the wind",
+    "phrase_ar": "يتجاهل التحذيرات",
+    "vocabulary": [
+      "caution",
+      "wind",
+      "decide"
+    ]
   }
 ]
