@@ -1348,5 +1348,15 @@
       "news",
       "party"
     ]
+  },
+  {
+    "date": "2026-06-29",
+    "phrase": "the writing on the wall",
+    "phrase_ar": "الكتابة على الحائط",
+    "vocabulary": [
+      "sign",
+      "future",
+      "trouble"
+    ]
   }
 ]
