@@ -1368,5 +1368,15 @@
       "face",
       "pain"
     ]
+  },
+  {
+    "date": "2026-07-01",
+    "phrase": "break the ice",
+    "phrase_ar": "يكسر الجليد",
+    "vocabulary": [
+      "ice",
+      "conversation",
+      "nervous"
+    ]
   }
 ]
