@@ -1398,5 +1398,15 @@
       "help",
       "success"
     ]
+  },
+  {
+    "date": "2026-07-04",
+    "phrase": "a dime a dozen",
+    "phrase_ar": "شيء متوفر بكثرة",
+    "vocabulary": [
+      "common",
+      "available",
+      "value"
+    ]
   }
 ]
