@@ -1408,5 +1408,15 @@
       "available",
       "value"
     ]
+  },
+  {
+    "date": "2026-07-05",
+    "phrase": "take the bull by the horns",
+    "phrase_ar": "أمسك الثور من قرونه",
+    "vocabulary": [
+      "bull",
+      "horns",
+      "take"
+    ]
   }
 ]
