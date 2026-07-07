@@ -1428,5 +1428,15 @@
       "bag",
       "secret"
     ]
+  },
+  {
+    "date": "2026-07-07",
+    "phrase": "barking up the wrong tree",
+    "phrase_ar": "تنبح على الشجرة الخطأ",
+    "vocabulary": [
+      "bark",
+      "wrong",
+      "tree"
+    ]
   }
 ]
