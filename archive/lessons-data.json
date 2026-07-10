@@ -1458,5 +1458,15 @@
       "محاولة",
       "نجاح"
     ]
+  },
+  {
+    "date": "2026-07-10",
+    "phrase": "get in touch",
+    "phrase_ar": "التواصل",
+    "vocabulary": [
+      "contact",
+      "email",
+      "call"
+    ]
   }
 ]
