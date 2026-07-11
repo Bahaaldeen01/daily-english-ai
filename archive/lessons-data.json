@@ -1468,5 +1468,15 @@
       "email",
       "call"
     ]
+  },
+  {
+    "date": "2026-07-11",
+    "phrase": "throw in the towel",
+    "phrase_ar": "استسلم",
+    "vocabulary": [
+      "towel",
+      "boxer",
+      "knock out"
+    ]
   }
 ]
