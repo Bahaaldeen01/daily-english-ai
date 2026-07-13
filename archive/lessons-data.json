@@ -1488,5 +1488,15 @@
       "value",
       "market"
     ]
+  },
+  {
+    "date": "2026-07-13",
+    "phrase": "a blessing in disguise",
+    "phrase_ar": "نعمة في طيها مشكلة",
+    "vocabulary": [
+      "loss",
+      "opportunity",
+      "disguise"
+    ]
   }
 ]
