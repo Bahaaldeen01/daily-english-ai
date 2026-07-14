@@ -1498,5 +1498,15 @@
       "opportunity",
       "disguise"
     ]
+  },
+  {
+    "date": "2026-07-14",
+    "phrase": "burning the midnight oil",
+    "phrase_ar": "سهر الليل",
+    "vocabulary": [
+      "midnight",
+      "oil",
+      "burn"
+    ]
   }
 ]
