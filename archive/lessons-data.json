@@ -1578,5 +1578,15 @@
       "dog",
       "lie"
     ]
+  },
+  {
+    "date": "2026-07-22",
+    "phrase": "kick the bucket",
+    "phrase_ar": "يُدِيحُ الحذاء",
+    "vocabulary": [
+      "bucket",
+      "skeleton",
+      "party"
+    ]
   }
 ]
