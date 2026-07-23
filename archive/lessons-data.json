@@ -1588,5 +1588,15 @@
       "skeleton",
       "party"
     ]
+  },
+  {
+    "date": "2026-07-23",
+    "phrase": "costs an arm and a leg",
+    "phrase_ar": "يكلف ذراعاً وساقاً",
+    "vocabulary": [
+      "cost",
+      "expensive",
+      "price"
+    ]
   }
 ]
