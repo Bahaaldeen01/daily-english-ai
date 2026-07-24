@@ -1598,5 +1598,15 @@
       "expensive",
       "price"
     ]
+  },
+  {
+    "date": "2026-07-24",
+    "phrase": "sweep under the rug",
+    "phrase_ar": "تحت السجاد",
+    "vocabulary": [
+      "sweep",
+      "rug",
+      "ignore"
+    ]
   }
 ]
