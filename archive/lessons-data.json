@@ -1628,5 +1628,15 @@
       "shoot",
       "talk"
     ]
+  },
+  {
+    "date": "2026-07-27",
+    "phrase": "hit the nail on the head",
+    "phrase_ar": "ضرب العصفور في الرأس",
+    "vocabulary": [
+      "nail",
+      "head",
+      "hit"
+    ]
   }
 ]
