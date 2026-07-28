@@ -1638,5 +1638,15 @@
       "head",
       "hit"
     ]
+  },
+  {
+    "date": "2026-07-28",
+    "phrase": "let bygones be bygones",
+    "phrase_ar": "دع الأمور الماضية تكون ماضية",
+    "vocabulary": [
+      "bygones",
+      "let",
+      "move on"
+    ]
   }
 ]
