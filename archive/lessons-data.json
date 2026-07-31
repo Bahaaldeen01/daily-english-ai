@@ -1668,5 +1668,15 @@
       "face",
       "music"
     ]
+  },
+  {
+    "date": "2026-07-31",
+    "phrase": "hit the road",
+    "phrase_ar": "انطلق",
+    "vocabulary": [
+      "travel",
+      "destination",
+      "journey"
+    ]
   }
 ]
