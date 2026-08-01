@@ -1678,5 +1678,15 @@
       "destination",
       "journey"
     ]
+  },
+  {
+    "date": "2026-08-01",
+    "phrase": "get the ball rolling",
+    "phrase_ar": "أن نبدأ بشيء",
+    "vocabulary": [
+      "project",
+      "deadline",
+      "meeting"
+    ]
   }
 ]
