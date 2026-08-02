@@ -1688,5 +1688,15 @@
       "deadline",
       "meeting"
     ]
+  },
+  {
+    "date": "2026-08-02",
+    "phrase": "hit the ground running",
+    "phrase_ar": "يبدأ بشكل نشيط أو سريع",
+    "vocabulary": [
+      "hit",
+      "ground",
+      "running"
+    ]
   }
 ]
