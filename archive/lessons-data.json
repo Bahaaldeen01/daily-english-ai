@@ -1708,5 +1708,15 @@
       "route",
       "travel"
     ]
+  },
+  {
+    "date": "2026-08-04",
+    "phrase": "the elephant in the room",
+    "phrase_ar": "الفيل في الغرفة",
+    "vocabulary": [
+      "elephant",
+      "room",
+      "address"
+    ]
   }
 ]
