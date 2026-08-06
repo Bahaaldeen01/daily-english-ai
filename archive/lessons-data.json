@@ -1718,5 +1718,15 @@
       "room",
       "address"
     ]
+  },
+  {
+    "date": "2026-08-06",
+    "phrase": "break the bank",
+    "phrase_ar": "تكسير البنك",
+    "vocabulary": [
+      "afford",
+      "luxury",
+      "vacation"
+    ]
   }
 ]
