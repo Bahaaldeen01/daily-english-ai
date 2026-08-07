@@ -1728,5 +1728,15 @@
       "luxury",
       "vacation"
     ]
+  },
+  {
+    "date": "2026-08-07",
+    "phrase": "hit the jackpot",
+    "phrase_ar": "ربح الجائزة الكبرى",
+    "vocabulary": [
+      "jackpot",
+      "successful",
+      "unexpected"
+    ]
   }
 ]
