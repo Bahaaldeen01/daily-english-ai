@@ -1738,5 +1738,15 @@
       "successful",
       "unexpected"
     ]
+  },
+  {
+    "date": "2026-08-08",
+    "phrase": "costs an arm and a leg",
+    "phrase_ar": "يكلف ذراعًا وساقًا",
+    "vocabulary": [
+      "cost",
+      "expensive",
+      "price"
+    ]
   }
 ]
