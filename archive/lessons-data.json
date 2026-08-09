@@ -1748,5 +1748,15 @@
       "expensive",
       "price"
     ]
+  },
+  {
+    "date": "2026-08-09",
+    "phrase": "call it a day",
+    "phrase_ar": "نعتبرها نهاية اليوم",
+    "vocabulary": [
+      "work",
+      "tired",
+      "finished"
+    ]
   }
 ]
