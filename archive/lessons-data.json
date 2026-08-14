@@ -1798,5 +1798,15 @@
       "bird",
       "catch"
     ]
+  },
+  {
+    "date": "2026-08-14",
+    "phrase": "hit the sack",
+    "phrase_ar": "يذهب إلى الفراش",
+    "vocabulary": [
+      "tired",
+      "sleep",
+      "bed"
+    ]
   }
 ]
