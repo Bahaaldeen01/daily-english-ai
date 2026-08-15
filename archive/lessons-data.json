@@ -1808,5 +1808,15 @@
       "sleep",
       "bed"
     ]
+  },
+  {
+    "date": "2026-08-15",
+    "phrase": "hit the books",
+    "phrase_ar": "يذاكر بجد",
+    "vocabulary": [
+      "study",
+      "exam",
+      "prepare"
+    ]
   }
 ]
