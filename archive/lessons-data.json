@@ -1878,5 +1878,15 @@
       "stay",
       "home"
     ]
+  },
+  {
+    "date": "2026-08-23",
+    "phrase": "costs an arm and a leg",
+    "phrase_ar": "تكلف ذراعًا وساقًا",
+    "vocabulary": [
+      "cost",
+      "arm",
+      "leg"
+    ]
   }
 ]
