@@ -1888,5 +1888,15 @@
       "arm",
       "leg"
     ]
+  },
+  {
+    "date": "2026-08-24",
+    "phrase": "make ends meet",
+    "phrase_ar": "تغطية النفقات",
+    "vocabulary": [
+      "budget",
+      "expenses",
+      "income"
+    ]
   }
 ]
