@@ -1898,5 +1898,15 @@
       "expenses",
       "income"
     ]
+  },
+  {
+    "date": "2026-08-25",
+    "phrase": "piece of cake",
+    "phrase_ar": "قطعة من الكعكة",
+    "vocabulary": [
+      "easy",
+      "problem",
+      "study"
+    ]
   }
 ]
