@@ -1938,5 +1938,15 @@
       "cut",
       "time"
     ]
+  },
+  {
+    "date": "2026-08-29",
+    "phrase": "the ball is in your court",
+    "phrase_ar": "الكرة في ملعبك",
+    "vocabulary": [
+      "decision",
+      "information",
+      "project"
+    ]
   }
 ]
