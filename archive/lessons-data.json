@@ -1958,5 +1958,15 @@
       "beans",
       "secret"
     ]
+  },
+  {
+    "date": "2026-08-31",
+    "phrase": "burn the midnight oil",
+    "phrase_ar": "يعمل حتى وقت متأخر",
+    "vocabulary": [
+      "midnight",
+      "oil",
+      "study"
+    ]
   }
 ]
