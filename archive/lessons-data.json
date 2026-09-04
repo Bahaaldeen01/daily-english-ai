@@ -1998,5 +1998,15 @@
       "bar",
       "ladder"
     ]
+  },
+  {
+    "date": "2026-09-04",
+    "phrase": "piece of cake",
+    "phrase_ar": "قطعة من الكعكة",
+    "vocabulary": [
+      "easy",
+      "difficult",
+      "task"
+    ]
   }
 ]
