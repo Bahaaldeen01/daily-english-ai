@@ -2088,5 +2088,15 @@
       "exaggerate",
       "confirm"
     ]
+  },
+  {
+    "date": "2026-09-13",
+    "phrase": "the ball is in your court",
+    "phrase_ar": "الكرة في ملعبك",
+    "vocabulary": [
+      "decision",
+      "offer",
+      "step"
+    ]
   }
 ]
