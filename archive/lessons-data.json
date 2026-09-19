@@ -2148,5 +2148,15 @@
       "oil",
       "burn"
     ]
+  },
+  {
+    "date": "2026-09-19",
+    "phrase": "a dime a dozen",
+    "phrase_ar": "امر شائع",
+    "vocabulary": [
+      "dime",
+      "dozen",
+      "common"
+    ]
   }
 ]
